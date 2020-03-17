@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block extend_css %}
+	<link rel="stylesheet" type="text/css" href="{% static "resource" %}/styles/register_styles.css">
+	<link rel="stylesheet" type="text/css" href="{% static "resource" %}/styles/register_responsive.css">
+{% endblock %}
+
+{% block main_content %}
+
+	<!-- Contact Info -->
+
+	<div class="contact_info">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-10 offset-lg-1">
+					<div class="contact_info_container d-flex flex-lg-row flex-column justify-content-between align-items-between">
+
+						<!-- Contact Item -->
+						<div class="contact_info_item d-flex flex-row align-items-center justify-content-start">
+							<div class="contact_info_image"><img src="{% static "resource" %}/images/contact_1.png" alt=""></div>
+							<div class="contact_info_content">
+								<div class="contact_info_title">Phone</div>
+								<div class="contact_info_text">+38 068 005 3570</div>
+							</div>
+						</div>
+
+						<!-- Contact Item -->
+						<div class="contact_info_item d-flex flex-row align-items-center justify-content-start">
+							<div class="contact_info_image"><img src="{% static "resource" %}/images/contact_2.png" alt=""></div>
+							<div class="contact_info_content">
+								<div class="contact_info_title">Email</div>
+								<div class="contact_info_text">fastsales@gmail.com</div>
+							</div>
+						</div>
+
+						<!-- Contact Item -->
+						<div class="contact_info_item d-flex flex-row align-items-center justify-content-start">
+							<div class="contact_info_image"><img src="{% static "resource" %}/images/contact_3.png" alt=""></div>
+							<div class="contact_info_content">
+								<div class="contact_info_title">Address</div>
+								<div class="contact_info_text">10 Suffolk at Soho, London, UK</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Contact Form -->
+
+	<div class="contact_form">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-10 offset-lg-1">
+					<div class="contact_form_container">
+						{% if registered %}
+							<div class="alert alert-primary" role="alert">
+  								Your account has been create successfully. Click 'Sign in' link to top menu to login.
+							</div>
+						{% else %}
+							<div class="contact_form_title">Register Here:</div>
+							<form action="{% url 'home-page:register' %}" id="register_form" method="POST">
+								{% csrf_token %}
+                                <div class="form-group row">
+                                    <label for="" class="col-sm-2 col-form-label">{{ registerForm.first_name.label }}</label>
+                                    <div class="col-sm-10">
+                                      	{{ registerForm.first_name }}
+										{{ registerForm.first_name.errors }}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{ registerForm.last_name.label }}</label>
+                                    <div class="col-sm-10">
+                                      	{{ registerForm.last_name }}
+										{{ registerForm.last_name.errors }}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{ registerForm.email.label }}</label>
+                                    <div class="col-sm-10">
+                                      	{{ registerForm.email }}
+										{{ registerForm.email.errors }}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{ registerForm.username.label }}</label>
+                                    <div class="col-sm-10">
+                                      	{{ registerForm.username }}
+										{{ registerForm.username.errors }}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{ registerForm.password.label }}</label>
+                                    <div class="col-sm-10">
+                                      	{{ registerForm.password }}
+										{{ registerForm.password.errors }}
+                                    </div>
+                                </div>
+
+								<div class="contact_form_button">
+									<button type="submit" class="button contact_submit_button">Submit</button>
+								</div>
+							</form>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel"></div>
+	</div>
+
+{% endblock %}
+
+{% block extend_js %}
+
+{% endblock %}
+
+

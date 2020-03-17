@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}
+    <title>OneTech - Blog</title>
+{% endblock %}
+
+{% block extend_css %}
+<link rel="stylesheet" type="text/css" href="{% static "resource" %}/styles/blog_styles.css">
+<link rel="stylesheet" type="text/css" href="{% static "resource" %}/styles/blog_responsive.css">
+{% endblock %}
+
+{% block main_content %}
+	<!-- Home -->
+
+	<div class="home">
+		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="{% static 'resource' %}/images/shop_background.jpg"></div>
+		<div class="home_overlay"></div>
+		<div class="home_content d-flex flex-column align-items-center justify-content-center">
+			<h2 class="home_title">Technological Blog</h2>
+		</div>
+	</div>
+
+	<!-- Blog -->
+
+	<div class="blog">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="blog_posts d-flex flex-row align-items-start justify-content-between">
+						<!-- Blog post -->
+						{% for blog in blogs %}
+							<div class="blog_post">
+								<div class="blog_image" style="background-image:url({{ blog.represent_image.url }})"></div>
+								<div class="blog_text">{{ blog.title }}</div>
+								<div class="blog_button"><a href="{% url 'home-page:blog_detail' blog.id %}">Continue Reading</a></div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+					
+			</div>
+		</div>
+	</div>
+	
+{% endblock %}
+	
+{% block extend_js %}
+<script src="{% static "resource" %}/js/blog_custom.js"></script>
+{% endblock %}

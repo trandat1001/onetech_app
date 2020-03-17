@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}
+    <title>Blog Post</title>
+{% endblock %}
+
+{% block extend_css %}
+<link rel="stylesheet" type="text/css" href="{% static "resource" %}/styles/blog_single_styles.css">
+<link rel="stylesheet" type="text/css" href="{% static "resource" %}/styles/blog_single_responsive.css">
+{% endblock %}
+
+
+{% block main_content %}
+
+	<!-- Home -->
+
+	<div class="home">
+		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="{{ blog.represent_image.url }}" data-speed="0.8"></div>
+	</div>
+
+	<!-- Single Blog Post -->
+
+	<div class="single_post">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2">
+					<div class="single_post_title">{{ blog.title }}</div>
+					<div class="single_post_text">
+						<p>
+							{{ blog.content }}
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Blog Posts -->
+
+	<div class="blog">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="blog_posts d-flex flex-row align-items-start justify-content-between">
+						<!-- Blog post -->
+						{% for blog in random3Blog %}
+							<div class="blog_post">
+								<div class="blog_image" style="background-image:url({% static "resource" %}/{{ blog.represent_image }})"></div>
+								<div class="blog_text">{{ blog.title }}</div>
+								<div class="blog_button"><a href="{% url 'home-page:blog_detail' blog.id %}">Continue Reading</a></div>
+							</div>
+						{% endfor %}
+
+					</div>
+				</div>	
+			</div>
+		</div>
+	</div>
+{% endblock %}
+	
+{% block extend_js %}
+<script src="{% static "resource" %}/plugins/parallax-js-master/parallax.min.js"></script>
+<script src="{% static "resource" %}/js/blog_single_custom.js"></script>
+{% endblock %}
+
+

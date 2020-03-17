@@ -1,0 +1,23 @@
+﻿{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}
+    <title>OneTech - Your Cart</title>
+{% endblock %}
+
+{% block extend_css %}
+	<link rel="stylesheet" type="text/css" href="{% static "resource" %}/styles/contact_styles.css">
+	<link rel="stylesheet" type="text/css" href="{% static "resource" %}/styles/contact_responsive.css">
+{% endblock %}
+
+{% block main_content %}
+    <div class="container">
+        <div class="row" style="margin-top: 6%">
+            <div class="col-md-8 col-md-offset-2">
+                <h3 class="page-header">Thank You For Shopping With Us
+                </h3>
+                <p>Your order has been successfully completed. Your order number is <strong>{{ order.id }}</strong>.</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
